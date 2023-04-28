@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Career Quiz</title>
+</head>
+<body>
+    <h1>Welcome to the Career Quiz!</h1>
+    <p>Please enter your information and answer the questions below to receive your career recommendations.</p>
+    <form action="/quiz" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="age">Age:</label>
+        <input type="text" id="age" name="age"><br><br>
+
+        <label for="education_level">Education Level:</label>
+        <input type="text" id="education_level" name="education_level"><br><br>
+
+        <label for="interests">Interests (up to 3):</label><br>
+        <input type="text" id="interest1" name="interest1"><br>
+        <input type="text" id="interest2" name="interest2"><br>
+        <input type="text" id="interest3" name="interest3"><br><br>
+
+        <label for="skills">Skills (up to 3):</label><br>
+        <input type="text" id="skill1" name="skill1"><br>
+        <input type="text" id="skill2" name="skill2"><br>
+        <input type="text" id="skill3" name="skill3"><br><br>
+
+        {% for question in questions %}
+            <h2>{{ question.question }}</h2>
+            {% for option in question.options %}
+                <input type="radio" id="{{ option }}" name="{{ question.question }}" value="{{ option }}">
+                <label for="{{ option }}">{{ option }}</label><br>
+            {% endfor %}
+            <br>
+        {% endfor %}
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
