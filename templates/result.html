@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Career Recommendation Results</title>
+</head>
+<body>
+    <h1>Career Recommendation Results</h1>
+    <p>Hi, {{name}}! Based on your interests and skills, we recommend the following career paths:</p>
+    <ul>
+        {% for career in careers %}
+        <li>{{ career }}</li>
+        {% endfor %}
+    </ul>
+    <p>Thank you for using our career recommendation service!</p>
+</body>
+</html>
