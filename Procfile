@@ -1,1 +1,1 @@
-web: gunicorn cs32-final:app
+web: gunicorn myapp:app
