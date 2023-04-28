@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-from main import main
+from main import questions, display_question, get_answer, calculate_score, provide_feedback
 
 app = Flask(__name__)
 
