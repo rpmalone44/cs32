@@ -1,40 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Career Quiz</title>
+	<title>Quiz</title>
 </head>
 <body>
-    <h1>Welcome to the Career Quiz!</h1>
-    <p>Please enter your information and answer the questions below to receive your career recommendations.</p>
-    <form action="/quiz" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name"><br><br>
+	<h1>Welcome to the Quiz</h1>
+	<form method="post" action="{{ url_for('quiz') }}">
+		<label>Name:</label>
+		<input type="text" name="name"><br>
+		<label>Age:</label>
+		<input type="number" name="age"><br>
+		<label>Education Level:</label>
+		<input type="text" name="education_level"><br>
+		<label>Number of Interests:</label>
+		<input type="number" name="num_interests" id="num_interests"><br>
+		<div id="interests"></div>
+		<label>Number of Skills:</label>
+		<input type="number" name="num_skills" id="num_skills"><br>
+		<div id="skills"></div>
+		{% for question in questions %}
+		<div>
+			<p>{{ display_question(question) }}</p>
+			<input type="radio" name="answer_{{ question['id'] }}" value="A">{{ question['options']['A'] }}<br>
+			<input type="radio" name="answer_{{ question['id'] }}" value="B">{{ question['options']['B'] }}<br>
+			<input type="radio" name="answer_{{ question['id'] }}" value="C">{{ question['options']['C'] }}<br>
+			<input type="radio" name="answer_{{ question['id'] }}" value="D">{{ question['options']['D'] }}<br>
+		</div>
+		{% endfor %}
+		<input type="submit" value="Submit">
+	</form>
+	
+	<script>
+		// Add fields for interests
+		const numInterestsInput = document.getElementById("num_interests");
+		const interestsDiv = document.getElementById("interests");
+		numInterestsInput.addEventListener("input", function() {
+			interestsDiv.innerHTML = "";
+			for (let i = 1; i <= numInterestsInput.value; i++) {
+				const interestInput = document.createElement("input");
+				interestInput.type = "text";
+				interestInput.name = "interest_" + i;
+				interestInput.placeholder = "Interest " + i;
+				interestsDiv.appendChild(interestInput);
+				interestsDiv.appendChild(document.createElement("br"));
+			}
+		});
 
-        <label for="age">Age:</label>
-        <input type="text" id="age" name="age"><br><br>
+		// Add fields for skills
+		const numSkillsInput = document.getElementById("num_skills");
+		const skillsDiv = document.getElementById("skills");
+		numSkillsInput.addEventListener("input", function() {
+			skillsDiv.innerHTML = "";
+			for (let i = 1; i <= numSkillsInput.value; i++) {
+				const skillInput = document.createElement("input");
+				skillInput.type = "text";
+				skillInput.name = "skill_" + i;
+				skillInput.placeholder = "Skill " + i;
+				skillsDiv.appendChild(skillInput);
+				skillsDiv.appendChild(document.createElement("br"));
+			}
+		});
+	</script>
 
-        <label for="education_level">Education Level:</label>
-        <input type="text" id="education_level" name="education_level"><br><br>
-
-        <label for="interests">Interests (up to 3):</label><br>
-        <input type="text" id="interest1" name="interest1"><br>
-        <input type="text" id="interest2" name="interest2"><br>
-        <input type="text" id="interest3" name="interest3"><br><br>
-
-        <label for="skills">Skills (up to 3):</label><br>
-        <input type="text" id="skill1" name="skill1"><br>
-        <input type="text" id="skill2" name="skill2"><br>
-        <input type="text" id="skill3" name="skill3"><br><br>
-
-        {% for question in questions %}
-            <h2>{{ question.question }}</h2>
-            {% for option in question.options %}
-                <input type="radio" id="{{ option }}" name="{{ question.question }}" value="{{ option }}">
-                <label for="{{ option }}">{{ option }}</label><br>
-            {% endfor %}
-            <br>
-        {% endfor %}
-        <input type="submit" value="Submit">
-    </form>
 </body>
 </html>
