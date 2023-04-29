@@ -31,7 +31,7 @@ def quiz():
         # display questions and record answers
         answers = []
         for question in questions:
-            answers.append(request.form[f'answer_{question["id"]}'])
+            answers.append(request.form[f'answer_{question["question"]}'])
 
         # calculate score and give answer
         score = calculate_score(answers)
