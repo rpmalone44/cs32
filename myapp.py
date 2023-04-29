@@ -7,36 +7,39 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/', methods=['POST'])
-def submit():
-    # get user information
-    name = request.form['name']
-    age = request.form['age']
-    education_level = request.form['education_level']
-    interests = []
-    skills = []
+@app.route('/quiz', methods=['GET', 'POST'])
+def quiz():
+    if request.method == 'POST':
+        # get user information
+        name = request.form['name']
+        age = request.form['age']
+        education_level = request.form['education_level']
+        interests = []
+        skills = []
 
-    num_interests = int(request.form['num_interests'])
-    num_skills = int(request.form['num_skills'])
+        num_interests = int(request.form['num_interests'])
+        num_skills = int(request.form['num_skills'])
 
-    for i in range(num_interests):
-        interest = request.form[f'interest_{i+1}']
-        interests.append(interest)
+        for i in range(num_interests):
+            interest = request.form[f'interest_{i+1}']
+            interests.append(interest)
 
-    for i in range(num_skills):
-        skill = request.form[f'skill_{i+1}']
-        skills.append(skill)
+        for i in range(num_skills):
+            skill = request.form[f'skill_{i+1}']
+            skills.append(skill)
 
-    # display questions and record answers
-    answers = []
-    for question in questions:
-        answers.append(request.form[f'answer_{question["id"]}'])
+        # display questions and record answers
+        answers = []
+        for question in questions:
+            answers.append(request.form[f'answer_{question["id"]}'])
 
-    # calculate score and give answer
-    score = calculate_score(answers)
-    feedback = provide_feedback(score)
+        # calculate score and give answer
+        score = calculate_score(answers)
+        feedback = provide_feedback(score)
 
-    return render_template('result.html', name=name, age=age, education_level=education_level, interests=interests, skills=skills, feedback=feedback)
+        return render_template('result.html', name=name, age=age, education_level=education_level, interests=interests, skills=skills, feedback=feedback)
+
+    return render_template('quiz.html', questions=questions, display_question=display_question)
 
 if __name__ == '__main__':
     app.run()
