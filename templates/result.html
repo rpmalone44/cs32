@@ -1,17 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Career Recommendation Results</title>
-</head>
-<body>
-    <h1>Career Recommendation Results</h1>
-    <p>Hi, {{name}}! Based on your interests and skills, we recommend the following career paths:</p>
+<html>
+  <head>
+    <title>Quiz Result</title>
+  </head>
+  <body>
+    <h1>Quiz Result</h1>
+    <p><strong>Name:</strong> {{ name }}</p>
+    <p><strong>Age:</strong> {{ age }}</p>
+    <p><strong>Education Level:</strong> {{ education_level }}</p>
+    <p><strong>Interests:</strong></p>
     <ul>
-        {% for career in careers %}
-        <li>{{ career }}</li>
-        {% endfor %}
+      {% for interest in interests %}
+      <li>{{ interest }}</li>
+      {% endfor %}
     </ul>
-    <p>Thank you for using our career recommendation service!</p>
-</body>
+    <p><strong>Skills:</strong></p>
+    <ul>
+      {% for skill in skills %}
+      <li>{{ skill }}</li>
+      {% endfor %}
+    </ul>
+    <p><strong>Score:</strong> {{ score }}</p>
+    <p><strong>Feedback:</strong> {{ feedback }}</p>
+  </body>
 </html>
