@@ -29,12 +29,12 @@ def submit():
 
     # display questions and record answers
     answers = []
-    for question in main.questions:
+    for question in questions:
         answers.append(request.form[f'answer_{question["id"]}'])
 
     # calculate score and give answer
-    score = main.calculate_score(answers)
-    feedback = main.provide_feedback(score)
+    score = calculate_score(answers)
+    feedback = provide_feedback(score)
 
     return render_template('result.html', name=name, age=age, education_level=education_level, interests=interests, skills=skills, feedback=feedback)
 
