@@ -39,7 +39,7 @@ def quiz():
 
         return render_template('result.html', name=name, age=age, education_level=education_level, interests=interests, skills=skills, feedback=feedback)
 
-    return render_template('quiz.html', questions=questions, display_question=display_question)
+    return render_template('index.html', questions=questions, display_question=display_question)
 
 if __name__ == '__main__':
     app.run()
