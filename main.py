@@ -1,17 +1,21 @@
 # define the questions (questions gathered from sourcing many career tests across the internet)
 questions = [{
+    'id': 1,
     "question": "What are your favorite subjects in school?",
     "options": ["Math", "Science", "English", "Social Studies"]
 }, {
+    'id': 2,
     "question":
     "Which of these activities do you enjoy most?",
     "options":
     ["Playing sports", "Playing music", "Reading", "Watching movies"]
 }, {
+    'id': 3,
     "question":
     "What skills do you possess?",
     "options": ["Leadership", "Problem-solving", "Creativity", "Organization"]
 }, {
+    'id': 4,
     "question":
     "What type of work environment do you prefer?",
     "options": [
@@ -19,6 +23,7 @@ questions = [{
         "Collaborative and creative", "Independent and flexible"
     ]
 }, {
+    'id': 5,
     "question":
     "What motivates you in your work?",
     "options": [
@@ -27,6 +32,7 @@ questions = [{
         "Opportunities for growth and advancement"
     ]
 }, {
+    'id': 6,
     "question":
     "How do you handle stress and pressure?",
     "options": [
@@ -36,6 +42,7 @@ questions = [{
         "I prefer to avoid stressful situations altogether"
     ]
 }, {
+    'id': 7,
     "question":
     "What are your long-term career goals?",
     "options": [
@@ -45,6 +52,7 @@ questions = [{
         "I want to continuously learn and develop new skills"
     ]
 }, {
+    'id': 8,
     "question":
     "How do you adapt to change?",
     "options": [
